@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ZulistMapper" >
+  <resultMap id="userlistzuResultMap" type="Pojo.Zulist" >
+    <id column="zid" property="zid" jdbcType="INTEGER" />
+    <result column="house_id" property="house_id" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+     
+     <result column="contract_id" property="contract_id" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+      <result column="userlist_id" property="userlist_id" jdbcType="INTEGER" />
+    <association property="userlist" javaType="Pojo.Userlist">
+			<!-- column:userlist表的主键对应的列  property：userlist对象中id属性-->
+	<id column="id" property="id"/>		
+	<result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+     <result column="user_id" property="user_id" jdbcType="INTEGER" />
+		</association>    
+  </resultMap>
+  
+	<insert id="insertzulist" parameterType="Pojo.Zulist">
+	  insert into zulist(house_id,price,address,userlist_id,contract_id) 
+	  values(#{house_id},#{price},#{address},#{userlist_id},#{contract_id})
+	</insert>
+	<select id="findzulistbyuid" parameterType="Integer" resultMap="userlistzuResultMap">
+		SELECT
+			z.*,
+			u.*
+		FROM
+			zulist z
+		JOIN `userlist` u ON u.id = z.userlist_id and u.id=#{userlist_id}
+	</select>
+	<select id="findzukezulist" parameterType="Integer" resultMap="userlistzuResultMap">
+		SELECT
+			z.*,
+			u.*
+		FROM
+			zulist z
+		JOIN `userlist` u ON u.id = z.userlist_id and z.zid=#{id}
+	</select>
+	<select id="findzuuserlist" resultMap="userlistzuResultMap">
+		SELECT
+			z.*,
+			u.*
+		FROM
+			zulist z
+		JOIN `userlist` u ON u.id = z.userlist_id
+	</select>
+	<select id="findzulist" resultType="Pojo.Zulist" parameterType="String">
+		SELECT * FROM
+			zulist WHERE house_id =#{house_id}
+	</select>
+	<delete id="deletezulist" parameterType="String" >
+		delete from zulist where house_id=#{house_id}
+	</delete>
+</mapper>

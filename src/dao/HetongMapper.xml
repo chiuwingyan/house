@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.HetongMapper" >
+  <resultMap id="BaseResultMap" type="Pojo.Hetong" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="house_id" property="house_id" jdbcType="VARCHAR" />
+    <result column="chuzu" property="chuzu" jdbcType="VARCHAR" />
+    <result column="chuzu_idcard" property="chuzu_idcard" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+     <result column="zuke" property="zuke" jdbcType="VARCHAR" />
+      <result column="zuke_idcard" property="zuke_idcard" jdbcType="VARCHAR" />
+       <result column="fromdate" property="fromdate" jdbcType="VARCHAR" />
+        <result column="todate" property="todate" jdbcType="VARCHAR" />
+         <result column="address" property="address" jdbcType="VARCHAR" />
+     <result column="payday" property="payday" jdbcType="INTEGER" />
+  </resultMap>
+	<select id="findhetong" parameterType="String" resultType="Pojo.Hetong">
+		select * from hetong where house_id=#{house_id}
+	</select>
+	<insert id="inserthetong" parameterType="Pojo.Hetong">
+	  insert into hetong(house_id,address,payday,price,chuzu,chuzu_idcard,zuke,zuke_idcard,fromdate,todate) 
+	  values(#{house_id},#{address},#{payday},#{price},#{chuzu},#{chuzu_idcard},#{zuke},#{zuke_idcard},#{fromdate},#{todate})
+	</insert>
+	<update id="updatehetong" parameterType="Pojo.Hetong">
+		update hetong set address=#{address},payday=#{payday},price=#{price},chuzu=#{chuzu},chuzu_idcard=#{chuzu_idcard},
+		zuke=#{zuke},zuke_idcard=#{zuke_idcard},fromdate=#{fromdate},todate=#{todate}
+		where house_id=#{house_id}
+</update>
+<delete id="deletehetong" parameterType="String" >
+		delete from hetong where house_id=#{house_id}
+	</delete>
+</mapper>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.HouselistMapper" >
+  <resultMap id="BaseResultMap" type="Pojo.Houselist" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="houseid" property="houseid" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="DOUBLE" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+     <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+ <select id="selectAll" resultMap="BaseResultMap">
+   select *
+    from houselist
+    <where>
+		
+		<if test="houseid!=null and houseid!=''">
+		and username=#{houseid}
+		</if>
+		<if test="address!=null and address!=''">
+		and address=#{address}
+		</if>
+		<if test="area!=null and area!=''">
+		and area=#{area}
+		</if>
+		<if test="price!=null and price!=''">
+		and price=#{price}
+		</if>
+		<if test="status!=null and status!=''">
+		and status=#{status}
+		</if>
+		</where>
+		
+  </select>
+  <select id="findhouselistByVoCount" parameterType="Pojo.QueryVo" resultType="int">
+		select count(*)
+		from houselist
+		<where>
+		
+		<if test="houseid!=null and houseid!=''">
+		and username=#{houseid}
+		</if>
+		<if test="address!=null and address!=''">
+		and address=#{address}
+		</if>
+		<if test="area!=null and area!=''">
+		and area=#{area}
+		</if>
+		<if test="price!=null and price!=''">
+		and price=#{price}
+		</if>
+		<if test="status!=null and status!=''">
+		and status=#{status}
+		</if>
+		</where>
+	</select>
+	<select id="findid" parameterType="Integer" resultType="Pojo.Houselist">
+		select * from houselist where id=#{id}
+	</select>
+	<select id="findhouseid" parameterType="String" resultType="Pojo.Houselist">
+		select * from houselist where houseid=#{houseid}
+	</select>
+	<select id="findhouseidupdate" parameterType="Pojo.Houselist" resultType="Pojo.Houselist">
+		select * from houselist where houseid=#{houseid} and id!=#{id}
+	</select>
+	<update id="updatehouse" parameterType="Pojo.Houselist">
+		update houselist set houseid=#{houseid},address=#{address},area=#{area},price=#{price},status=#{status}
+		where id=#{id}
+</update>
+<update id="updatehousestatus" parameterType="Pojo.Houselist">
+		update houselist set status=#{status}
+		where id=#{id}
+</update>
+<update id="updatestatus" parameterType="Pojo.Houselist">
+		update houselist set status=#{status}
+		where houseid=#{houseid}
+</update>
+	
+	<insert id="inserthouse" parameterType="Pojo.Houselist">
+	  insert into houselist(houseid,address,area,price,status) 
+	  values(#{houseid},#{address},#{area},#{price},#{status})
+	</insert>
+	
+	<delete id="deletehouse" parameterType="Integer" >
+		delete from houselist where id=#{id}
+	</delete>
+	<delete id="deletehousebyhouseid" parameterType="String" >
+		delete from houselist where houseid=#{houseid}
+	</delete>
+</mapper>

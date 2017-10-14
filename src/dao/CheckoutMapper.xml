@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.CheckoutMapper" >
+  <resultMap id="checkoutResultMap" type="Pojo.Checkout" >
+    <id column="cid" property="id" jdbcType="INTEGER" />
+    <result column="house_id" property="house_id" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+     <result column="userlist_id" property="userlist_id" jdbcType="INTEGER" />
+     <collection property="userlist" ofType="Pojo.Userlist">
+			<id property="id" column="id"/>	
+		<!--用户id已经在user对象中存在，此处可以不设置-->
+			<!-- <result property="userId" column="id"/> -->
+			<result property="name" column="name"/>
+			<result property="idcard" column="idcard"/>
+			<result property="phone" column="phone"/>
+			<result property="user_id" column="user_id"/>
+			
+		</collection>
+    
+  </resultMap>
+   <insert id="insertcheckout" parameterType="Pojo.Checkout">
+	  insert into checkout(house_id,address,userlist_id,status) 
+	  values(#{house_id},#{address},#{userlist_id},#{status})
+	</insert>
+	<select id="getallcheckout" resultMap="checkoutResultMap" >
+		SELECT
+	c.*, u.*
+FROM
+	`checkout` c
+LEFT JOIN userlist u ON u.id = c.userlist_id
+	</select>
+		<delete id="deletecheckout" parameterType="Integer" >
+		delete from checkout where cid=#{cid}
+	</delete>
+  </mapper>

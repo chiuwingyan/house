@@ -1,0 +1,12 @@
+.table th{ 
+	text-align: center; 
+	height:38px;
+}
+.table>tbody>tr>td,.panel-heading{
+text-align:center;
+}
+
+/* dataTables表头居中 */
+.table>thead:first-child>tr:first-child>th{
+text-align:center;
+}

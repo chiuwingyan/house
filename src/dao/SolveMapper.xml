@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.SolveMapper" >
+<resultMap id="BaseResultMap" type="Pojo.Solve" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="house_id" property="house_id" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+   
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="userlist_id" property="userlist_id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectall" resultMap="BaseResultMap" parameterType="Pojo.QueryVo" >
+    select *
+    from solve
+    <where>
+		
+		<if test="zuname!=null and zuname!=''">
+		and name like '%${zuname}%'
+		</if>
+		<if test="fromdate!=null and fromdate!=''">
+		and date &gt;= #{fromdate}
+		</if>
+		<if test="todate!=null and todate!=''">
+		and date  &lt;= #{todate}
+		</if>
+		<if test="userlist_id!=null and userlist_id!=''">
+		and userlist_id=#{userlist_id}
+		</if>
+		</where>
+
+  </select>
+  <select id="selectcount" resultType="Integer" parameterType="Pojo.QueryVo" >
+    select count(*)
+    from solve
+    <where>
+		
+		<if test="zuname!=null and zuname!=''">
+		and name like '%${zuname}%'
+		</if>
+		<if test="fromdate!=null and fromdate!=''">
+		and date &gt;= #{fromdate}
+		</if>
+		<if test="todate!=null and todate!=''">
+		and date  &lt;= #{todate}
+		</if>
+		<if test="userlist_id!=null and userlist_id!=''">
+		and userlist_id=#{userlist_id}
+		</if>
+		<if test="userlist_id!=null and userlist_id!=''">
+		and userlist_id=#{userlist_id}
+		</if>
+		</where>
+
+  </select>
+  <delete id="deletesolve" parameterType="Integer" >
+		delete from solve  where id=#{id}
+	</delete>
+	<insert id="insertsolve" parameterType="Pojo.Solve" >
+		 insert into solve(house_id,address,date,detail,status,name,userlist_id) 
+	  values(#{house_id},#{address},#{date},#{detail},#{status},#{name},#{userlist_id})
+	</insert>
+</mapper>

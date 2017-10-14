@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.PaidMapper" >
+<resultMap id="BaseResultMap" type="Pojo.Paid" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="house_id" property="house_id" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paydate" property="paydate" jdbcType="DATE" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="userlist_id" property="userlist_id" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+   <select id="selectall" resultMap="BaseResultMap" parameterType="Pojo.QueryVo" >
+    select *
+    from paid
+    <where>
+		
+		<if test="zuname!=null and zuname!=''">
+		and name like '%${zuname}%'
+		</if>
+		<if test="fromdate!=null and fromdate!=''">
+		and date &gt;= #{fromdate}
+		</if>
+		<if test="todate!=null and todate!=''">
+		and date  &lt;= #{todate}
+		</if>
+		<if test="userlist_id!=null and userlist_id!=''">
+		and userlist_id=#{userlist_id}
+		</if>
+		</where>
+
+  </select>
+  <select id="selectsum" resultType="Double" parameterType="Pojo.QueryVo" >
+    select SUM(price)
+    from paid
+    <where>
+		
+		<if test="zuname!=null and zuname!=''">
+		and name like '%${zuname}%'
+		</if>
+		<if test="fromdate!=null and fromdate!=''">
+		and date &gt;= #{fromdate}
+		</if>
+		<if test="todate!=null and todate!=''">
+		and date  &lt;= #{todate}
+		</if>
+		<if test="userlist_id!=null and userlist_id!=''">
+		and userlist_id=#{userlist_id}
+		</if>
+		</where>
+
+  </select>
+  <delete id="deletepaid" parameterType="Integer" >
+		delete from paid  where id=#{id}
+	</delete>
+	<insert id="insertpaid" parameterType="Pojo.Paid" >
+		 insert into paid(house_id,address,price,date,paydate,status,name,userlist_id) 
+	  values(#{house_id},#{address},#{price},#{date},#{paydate},#{status},#{name},#{userlist_id})
+	</insert>
+</mapper>

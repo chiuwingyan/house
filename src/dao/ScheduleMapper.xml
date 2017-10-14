@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ScheduleMapper" >
+<resultMap id="BaseResultMap" type="Pojo.Schedule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    
+  </resultMap>
+<insert id="insertschedule" parameterType="Pojo.Schedule">
+	  insert into schedule(date,content) 
+	  values(#{date},#{content})
+	</insert>
+<select id="selectAll" resultMap="BaseResultMap">
+   select *
+    from schedule
+    </select>
+<select id="selectbyid" resultType="Pojo.Schedule" parameterType="Integer">
+   select *
+    from schedule where id=#{id}
+    </select>
+<delete id="deleteschedule" parameterType="Integer" >
+		delete from schedule where id=#{id}
+	</delete>
+<update id="updateschedule" parameterType="Pojo.Schedule">
+		update schedule set date=#{date},content=#{content}
+		where id=#{id}
+</update>
+</mapper>
