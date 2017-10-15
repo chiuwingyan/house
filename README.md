@@ -29,9 +29,9 @@ Tomcat服务器部署
 管理员帐户:admin 密码：12345
 租客帐户：zyx 密码：123456
 
-![image](https://github.com/chiuwingyan/house/blob/master/img/1.png)
-![image](https://github.com/chiuwingyan/house/blob/master/img/2.png)
-![image](https://github.com/chiuwingyan/house/blob/master/img/3.png)
-![image](https://github.com/chiuwingyan/house/blob/master/img/4.png)
-![image](https://github.com/chiuwingyan/house/blob/master/img/5.png)
-![image](https://github.com/chiuwingyan/house/blob/master/img/6.png)
+![Alt text](https://github.com/chiuwingyan/house/blob/master/img/1.png)
+![Alt text](https://github.com/chiuwingyan/house/blob/master/img/2.png)
+![Alt text](https://github.com/chiuwingyan/house/blob/master/img/3.png)
+![Alt text](https://github.com/chiuwingyan/house/blob/master/img/4.png)
+![Alt text](https://github.com/chiuwingyan/house/blob/master/img/5.png)
+![Alt text](https://github.com/chiuwingyan/house/blob/master/img/6.png)
