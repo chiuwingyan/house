@@ -6,17 +6,17 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import dao.UserMapper;
-import Pojo.User;
-import Pojo.UserExample;
-import Pojo.UserExample.Criteria;
-import javassist.compiler.ast.Symbol;
+import store.zabbix.dao.UserMapper;
+import store.zabbix.pojo.User;
+import store.zabbix.pojo.UserExample;
+import store.zabbix.pojo.UserExample.Criteria;
+
 public class Usertest {
 private ApplicationContext applicatonContext;
 	
 	@Before
 	public void setUp() throws Exception{
-		String configLocation = "classpath:ApplicationContext-dao.xml";
+		String configLocation = "classpath:ApplicationContext-store.zabbix.dao.xml";
 		applicatonContext = new ClassPathXmlApplicationContext(configLocation);
 	}
 	
