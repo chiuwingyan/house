@@ -27,23 +27,22 @@
 - 日程模块 
     - 收租日程显示
 ## 框架介绍
+原始项目：  
+  - Spring 
+  - SpringMVC
+  - MyBatis
+  - MySQL数据库
+  - Tomcat服务器  
+  
+ 新增：  
+  - Docker部署
+  - Maven 项目版本管理工具
 
-原始项目：
-    - Spring 
-    - SpringMVC
-    - MyBatis
-    - MySQL数据库
-    - Tomcat服务器
-新增：  
-    - Docker部署
-    - Maven 项目版本管理工具
- 
 
 ## 项目功能部分截图
 登录  
 - 管理员帐户:`admin` 密码：`12345`  
-- 租客帐户：`zyx` 密码：`123456`
-
+- 租客帐户：`zyx` 密码：`123456`  
 ![Alt text](https://github.com/chiuwingyan/house/blob/master/img/1.png)
 ![Alt text](https://github.com/chiuwingyan/house/blob/master/img/2.png)
 ![Alt text](https://github.com/chiuwingyan/house/blob/master/img/3.png)
