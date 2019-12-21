@@ -1,0 +1,15 @@
+version: '2'
+services:
+  house:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 9898:8080
+    extra_hosts:
+      - "tools-jdbc:172.17.0.1"
+      - "tools-docker:172.17.0.1"
+    restart: always
+    container_name: house
+    hostname: tools-docker
+    image: house
