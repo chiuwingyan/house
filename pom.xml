@@ -51,6 +51,7 @@
                             </includes>
                         </resource>
                     </webResources>
+                    <outputDirectory>${basedir}/docker/</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>
